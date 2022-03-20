@@ -1,7 +1,6 @@
 package Chapter_6.atHome;
 
 import java.util.EmptyStackException;
-
 /**
  * A class of stacks whose entries are stored in a chain of nodes.
  */
@@ -13,8 +12,6 @@ public final class LinkedStack<T> implements StackInterface<T>
     {
         topNode = null;
     } // end default constructor
-
-    // <Implementations of the stack go here.>
 
     public void push(T newEntry)
     {

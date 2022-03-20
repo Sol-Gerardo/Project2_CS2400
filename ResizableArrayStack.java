@@ -5,7 +5,7 @@ import java.util.EmptyStackException;
 /**
  * A class of stacks whose entries are stored in an array.
  */
-public final class ArrayStack<T> implements StackInterface<T> 
+public final class ResizableArrayStack<T> implements StackInterface<T> 
 {
     private T[] stack; // Array of stack entries 
     private int topIndex; // Index of top entry
@@ -13,12 +13,12 @@ public final class ArrayStack<T> implements StackInterface<T>
     private static final int DEFAULT_CAPACITY = 50;
     private static final int MAX_CAPACITY = 10000;
 
-    public ArrayStack()
+    public ResizableArrayStack()
     {
         this(DEFAULT_CAPACITY);
     }
 
-    public ArrayStack(int initialCapacity)
+    public ResizableArrayStack(int initialCapacity)
     {
         integrityOk = false;
         checkCapacity(initialCapacity);

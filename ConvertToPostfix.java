@@ -21,22 +21,24 @@ public class ConvertToPostfix
         int index = 0;
         char topOperator;
 
-        while(index < infix.length() - 1)
+        while(index < infix.length())
         {
-            char nextCharacter;
+            char nextCharacter = ' ';
 
+            if(infix.charAt(index) == ' ')
+            {
+                ++index;
+                continue;
+            }
             if(infix.charAt(index) != ' ') // if character does not equal a space 
             {
                 nextCharacter = infix.charAt(index);
             }
-            else
-            {
-                continue;
-            }
             if(Character.isLetter(nextCharacter))
             {
                 postfix += nextCharacter;
-                break;
+                ++index;
+                continue;
             }
             switch(nextCharacter)
             {
@@ -47,7 +49,7 @@ public class ConvertToPostfix
                     // while the stack is not empty
                     // and precedence of nextCharacter <= 
                     // precedence of operator.Stack.peek()
-                    while(!operatorStack.isEmpty() && (nextCharacter <= operatorStack.peek())) 
+                    while(!operatorStack.isEmpty() && (getPrecedence(nextCharacter) <= getPrecedence(operatorStack.peek()))) 
                     {
                         postfix += operatorStack.peek();
                         operatorStack.pop();
@@ -68,6 +70,7 @@ public class ConvertToPostfix
                     break;
                 default: break; // Ignore unexpected characters 
             } // end switch
+            ++index;
         } // end while
 
         while(!operatorStack.isEmpty())
@@ -78,4 +81,19 @@ public class ConvertToPostfix
         }
         return postfix;
     } // end convertToPostfix
+
+    private static int getPrecedence(char operand)
+    {
+        switch(operand)
+        {
+            case '^':
+                return 3;
+            case '*': case '/':
+                return 2;
+            case '+': case '-':
+                return 1;
+        }
+
+        return -1;
+    } // end getPrecedence 
 } // end ConvertToPostfix
