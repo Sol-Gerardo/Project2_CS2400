@@ -1,6 +1,6 @@
 package Chapter_6.atHome;
 
-public class EvaluatePostfixDemo 
+public class CalculatorTest 
 {
     public static void main(String[] args)
     {
